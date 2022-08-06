@@ -1,0 +1,75 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+.breadcrumbs {
+  font-family: $font-family-oswald;
+  position: absolute;
+  top: calc(var(--menu-height) + 80px);
+  z-index: 2;
+  max-width: 1920px;
+  width: 100%;
+  left: 50vw;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+
+  @include media-styles("xl") {
+    top: calc(var(--menu-height) + 30px);
+    width: auto;
+    left: calc(var(--page-padding) + var(--logo-width));
+    transform: none;
+  }
+
+  @include media-styles("l") {
+    top: calc(var(--menu-height) + 20px);
+    left: var(--page-padding);
+  }
+
+  & > * {
+    margin: 10px 20px 10px 0;
+  }
+
+  &__item {
+    color: $color-footer;
+    font-weight: $font-weight-extra-light;
+    font-style: italic;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-text-unactive;
+    }
+
+    &_last {
+      color: $color-accent;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &__line {
+    width: 50px;
+    height: 1px;
+    background-color: $color-footer;
+  }
+
+  &__end {
+    position: absolute;
+    right: 0;
+    border: 1px solid $color-footer;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(45deg);
+    width: 5px;
+    height: 5px;
+  }
+}
+

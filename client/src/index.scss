@@ -1,0 +1,176 @@
+@use "sass:math";
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+// + Выделение текста
+::selection {
+  background: $color-text-selection; /* Safari */
+}
+
+::-moz-selection {
+  background: $color-text-selection; /* Firefox */
+}
+
+.p {
+  margin: 1em 0;
+}
+
+.bg-accent {
+  background-color: $color-accent;
+
+  ::selection {
+    background: $color-text-selection-2; /* Safari */
+  }
+
+  ::-moz-selection {
+    background: $color-text-selection-2; /* Firefox */
+  }
+}
+// - Выделение текста*/
+
+:root {
+  --logo-width: 95px;
+  --menu-height: 90px;
+  --breadcrumbs-height: 40px;
+  --page-padding: 75px;
+
+  @include media-styles("xl") { --page-padding: 60px; }
+  @include media-styles("m") { --page-padding: 40px; }
+  @include media-styles("s") { --page-padding: 20px; }
+
+  color: $color-text;
+  font-family: $font-family-base;
+  font-style: normal;
+  font-weight: $font-weight;
+  font-size: $font-size-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+.list {
+  padding-left: 0;
+  list-style-type: none;
+
+  &::before {
+    content:attr(aria-label);
+    margin-bottom: 0.5em;
+    display: block;
+  }
+
+  li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.5em;
+
+    &:before {
+      content: "—";
+      margin-left: -2rem;
+      position: absolute;
+    }
+  }
+}
+
+.link, .link:visited {
+  color: #0670D0;
+
+  &:hover {
+    @media (pointer: fine) {
+      color: $color-accent;
+    }
+  }
+}
+
+.section {
+  padding: 0 var(--page-padding);
+  display: block;
+  border: 1px solid transparent;
+
+  &__content {
+    margin: 0 math.div(100%, 12);
+    @include media-styles("l") { margin: 0 }
+  }
+
+  &__header {
+    position: relative;
+    margin: 0;
+    padding: 3em 0;
+    font-family: $font-family-opensans;
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+
+    &_bold {
+      font-size: $font-size-h1-large;
+      font-weight: $font-weight-extra-bold;
+
+      @include media-styles("xs") { font-size: $font-size-h3 }
+    }
+  }
+}
+
+@import "components/face/face.scss";
+
+.bg-pill {
+  position: relative;
+
+  &::before {
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateZ(-13deg);
+    border-radius: 1000px;
+    position: absolute;
+
+    width: 250%;
+    height: 130%;
+    background-color: $color-accent;
+  }
+
+  & > span {
+    font-weight: $font-weight-extra-bold;
+    position: relative
+  }
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: var(--page-padding) repeat(12, 1fr) var(--page-padding);
+  @include media-styles("m") { grid-template-columns: var(--page-padding) repeat(8, 1fr) var(--page-padding); }
+  @include media-styles("s") {
+    grid-template-columns: var(--page-padding) repeat(4, 1fr) var(--page-padding);
+    margin-top: 100px;
+  }
+  @include media-styles("xs") {
+    grid-template-columns: var(--page-padding) repeat(2, 1fr) var(--page-padding);
+    margin-top: 50px;
+  }
+  grid-column-gap: 10px;
+  grid-auto-flow: dense;
+}
+
+$sizes: "xxl", "xl", "l", "m", "s", "xs", "xxs";
+@each $size in $sizes {
+  @for $i from 0 to 12 {
+    @include media-styles($size) {
+      .#{$size}-b#{$i}-h { grid-column-start: $i }
+      .#{$size}-br#{$i}-h { grid-column-start: -$i - 1 } // reverse (count from end)
+      .#{$size}-e#{$i}-h { grid-column-end: $i }
+      .#{$size}-er#{$i}-h { grid-column-end: -$i }
+      .#{$size}-s#{$i}-h { grid-column-end: span $i }
+      .#{$size}-b#{$i}-v { grid-row-start: $i }
+      .#{$size}-br#{$i}-v { grid-row-start: -$i - 1 }
+      .#{$size}-e#{$i}-v { grid-row-end: $i }
+      .#{$size}-er#{$i}-v { grid-row-end: -$i }
+      .#{$size}-s#{$i}-v { grid-row-end: span $i }
+    }
+  }
+  @include media-styles($size) {
+    .#{$size}-last-h { grid-column-end: -1 }
+    .#{$size}-last-v { grid-row-end: -1 }
+  }
+}

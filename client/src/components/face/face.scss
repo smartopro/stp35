@@ -1,0 +1,179 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+.face {
+  position: relative;
+  padding-top: var(--menu-height);
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  @include media-styles("s") { height: auto }
+
+  &__wrapper {
+    position: absolute;
+    left: 50%;
+    right: var(--page-padding);
+    top: var(--menu-height);
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    @include media-styles("xl") { left: 40% }
+    @include media-styles("m") { left: 35% }
+    @include media-styles("s") {
+      position: relative;
+      left: 30%;
+      width: 70%;
+      top: 0;
+      margin: 30px 0;
+    }
+    @include media-styles("xs") {
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: $font-size-h3;
+      margin-top: 2.5em;
+    }
+  }
+
+  &__content {
+    position: relative;
+
+    @include media-styles("s") { width: 100% }
+  }
+
+  &__img {
+    position: absolute;
+    width: 60%;
+    object-fit: cover;
+    object-position: bottom;
+    max-height: calc(100vh - var(--menu-height));
+
+    @include media-styles("xl") {
+      width: calc(50% + 100%/12 - var(--page-padding));
+      left: calc(var(--page-padding) - 100%/12);
+    }
+    @include media-styles("l") {
+      left: -9%;
+      width: 50%;
+      top: 54%;
+      transform: translateY(calc(-50% + 0.5*var(--menu-height)));
+    }
+    @include media-styles("s") {
+      left: -35%;
+      max-height: calc(100% - var(--menu-height));
+      width: 85%;
+      top: var(--menu-height);
+      transform: none;
+    }
+    @include media-styles("xs") {
+      position: absolute;
+      width: 60%;
+      min-width: 410px;
+      left: auto;
+      right: 20%;
+      max-height: initial;
+      top: calc(var(--menu-height) + 4.5em);
+      transform: none;
+    }
+  }
+
+  &__header {
+    font-size: 192px;
+    line-height: 1em;
+    height: 1em;
+    font-weight: $font-weight-extra-bold;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+
+    @include media-styles("l") { font-size: 150px }
+    @include media-styles("s") { font-size: 120px }
+    @include media-styles("m") { font-size: 100px }
+    @include media-styles("xs") { font-size: 65px }
+  }
+
+  &__info {
+    margin-left: 230px;
+    font-family: $font-family-oswald;
+    font-size: $font-size-h3;
+    font-weight: $font-weight-light;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    display: flex;
+    flex-direction: column;
+
+    @include media-styles("l") {
+      font-size: $font-size-h4;
+    }
+
+    @include media-styles("s") {
+      margin-left: 170px;
+    }
+
+    @include media-styles("xs") {
+      margin-top: 239px;
+      margin-left: 0;
+      width: 100%;
+      align-items: center;
+    }
+  }
+
+  &__text {
+    margin-top: 30px;
+    min-height: 267px;
+    font-size: 1.2 * $font-size-h4;
+
+    @include media-styles("xl") { min-height: 230px }
+    @include media-styles("l") {
+      font-size: $font-size-h4;
+      margin-top: 0;
+      min-height: 180px;
+    }
+    @include media-styles("m") { font-size: 1.15 * $font-size-h5 }
+    @include media-styles("s") { min-height: 250px }
+    @include media-styles("xs") {
+      text-align: left;
+      min-height: 20px;
+    }
+  }
+
+  &__phone {
+    color: #000;
+    font-family: $font-family-oswald;
+    font-size: $font-size-h1-large;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    margin-top: 30px;
+    box-sizing: border-box;
+    width: 500px;
+
+    @include media-styles("xl") { font-size: $font-size-h1 }
+    @include media-styles("l") { margin-top: 0 }
+    @include media-styles("m") { width: 350px }
+    @include media-styles("xs") {
+      width: 100%;
+      font-size: $font-size-h2;
+    }
+  }
+
+  .face__button {
+    margin: 30px 0 0 0;
+    box-sizing: border-box;
+    width: 500px;
+
+    @include media-styles("m") {
+      width: 350px;
+      margin: 20px 0;
+      padding: 20px 0;
+      font-size: $font-size-h4;
+    }
+
+    @include media-styles("xs") {
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+}

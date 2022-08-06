@@ -1,0 +1,12 @@
+.app {
+  overflow-x: hidden;
+}
+
+.blurrable {
+  transition: filter 0.5s linear;
+  width: 100vw;
+
+  &_blurred {
+    filter: grayscale(50%) blur(7px);
+  }
+}

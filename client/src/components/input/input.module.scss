@@ -1,0 +1,54 @@
+@import "style/variables.scss";
+
+.root {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+
+  @media screen and (hover: hover) {
+    &:hover .input {
+      width: 450px;
+    }
+  }
+
+  .input:focus {
+    width: 450px;
+
+    &::placeholder {
+      font-size: 0;
+      //color: #BCDFF2;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.input {
+  -webkit-appearance: none;
+  line-height: 1em;
+  display: block;
+  border-radius: 100px;
+  border: 1px solid #FFF;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  outline: none;
+  color: #000;
+  font-family: $font-family-oswald;
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 300px;
+  transition: width 0.5s ease-in-out;
+
+  &::placeholder {
+    color: #000;
+    transition: font-size 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s linear;
+  }
+}
+
+.image {
+  position: absolute;
+  display: block;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 65%;
+}

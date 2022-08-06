@@ -1,0 +1,30 @@
+@import "style/variables.scss";
+
+.button {
+  background-color: $color-accent;
+  border-radius: 1000px;
+  color: #FFF;
+  border: none;
+  padding: 30px 80px;
+  filter: drop-shadow(0px 2px 0.552565px #E44A04);
+  font-family: $font-family-opensans;
+  font-size: $font-size-h3;
+  font-weight: $font-weight-bold;
+  text-align: center;
+
+  &:hover {
+    background-color: lighten($color-accent, 3%);
+  }
+
+  &:active {
+    filter: none;
+    box-shadow: inset 0 2px 7px #E44A04;
+  }
+
+  &_disabled {
+    pointer-events: none;
+    background-color: $color-text-unactive;
+    filter: none;
+    box-shadow: 0 0 1px transparent;
+  }
+}

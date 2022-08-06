@@ -1,0 +1,74 @@
+.dot-loader {
+  align-items: center;
+  background: #AAD7F0;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.dot-loader__filter {
+  position: absolute;
+  visibility: hidden;
+}
+
+.dot-loader__dots {
+  filter: url(#gooeyness);
+  padding: 30px;
+}
+
+.dot-loader__dot {
+  background: white;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+.dot-loader__dot:first-child { animation: dot-loader__FirstDot 3s infinite }
+.dot-loader__dot:nth-child(2) { animation: dot-loader__SecondDot 3s infinite }
+.dot-loader__dot:nth-child(3) { animation: dot-loader__ThirdDot 3s infinite }
+.dot-loader__dot:nth-child(4) { animation: dot-loader__FourthDot 3s infinite }
+.dot-loader__dot:nth-child(5) { animation: dot-loader__FifthDot 3s infinite }
+
+@keyframes dot-loader__FirstDot {
+  0%   { transform: scale(1) translateX(0) }
+  25%  { transform: scale(2.5) translateX(0) }
+  50%  { transform: scale(1) translateX(0) }
+  83%  { transform: scale(1) translateX(240px) }
+  100% { transform: scale(1) translateX(0) }
+}
+
+@keyframes dot-loader__SecondDot {
+  0%   { transform: translateX(0px) }
+  27%  { transform: translateX(-40px) }
+  50%  { transform: translateX(0px) }
+  81%  { transform: translateX(180px) }
+  100% { transform: translateX(0) }
+}
+
+@keyframes dot-loader__ThirdDot {
+  0%   { transform: translateX(0px) }
+  29%  { transform: translateX(-100px) }
+  50%  { transform: translateX(0px) }
+  79%  { transform: translateX(120px) }
+  100% { transform: translateX(0) }
+}
+
+@keyframes dot-loader__FourthDot {
+  0%   { transform: translateX(0px) }
+  31%  { transform: translateX(-160px) }
+  50%  { transform: translateX(0px) }
+  77%  { transform: translateX(60px) }
+  100% { transform: translateX(0) }
+}
+
+@keyframes dot-loader__FifthDot {
+  0%   { transform: scale(1) translateX(0) }
+  33%  { transform: scale(1) translateX(-220px) }
+  50%  { transform: scale(1) translateX(0) }
+  75%  { transform: scale(2.5) translateX(0) }
+  100% { transform: scale(1) translateX(0) }
+}

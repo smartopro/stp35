@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "lib": [
+      "ESNext"
+    ],
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "target": "ES6",
+    "allowJs": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true
+  }
+}

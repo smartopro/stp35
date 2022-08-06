@@ -1,0 +1,148 @@
+@use "sass:math";
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+.price {
+  background-color: $color-accent-2;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // padding: 0 calc(var(--page-padding) + 100% / 12);
+  padding-bottom: 100px;
+
+  //@include media-styles("l") {
+  //  padding: 0 var(--page-padding);
+  //  padding-bottom: 100px;
+  //}
+
+  @include media-styles("xs") { padding-bottom: 50px }
+}
+
+.query {
+  margin: 10px auto 30px auto;
+}
+
+.hint {
+  width: 100%;
+  font-family: $font-family-oswald;
+  font-weight: $font-weight-extra-light;
+  font-size: $font-size-h3;
+  font-style: italic;
+  text-align: left;
+  margin-top: 20px;
+  color: $color-footer;
+
+  @include media-styles("xs") {
+    font-size: $font-size-h6;
+    line-height: 1.5em;
+  }
+}
+
+.info {
+  width: 100%;
+  margin-top: 100px;
+  box-sizing: border-box;
+  padding: 0 math.div(100%, 12);
+  font-family: $font-family-oswald;
+  font-weight: $font-weight-light;
+  font-size: $font-size-h3;
+  line-height: 1.5em;
+  letter-spacing: 0.05em;
+
+  @include media-styles("xl") { padding: 0 }
+
+  @include media-styles("xs") {
+    margin-top: 20px;
+  }
+
+  &__header {
+    @include media-styles("xs") {
+      font-size: $font-size-h5;
+      line-height: 1.5em;
+    }
+  }
+
+  &__phone {
+    white-space: nowrap;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-h2;
+    color: $color-accent;
+
+    @include media-styles("xs") {
+      font-size: $font-size-h5;
+      line-height: 1.5em;
+    }
+  }
+
+  &__content {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+
+    @include media-styles("s") { justify-content: space-evenly }
+
+    @include media-styles("xs") { margin-top: 20px }
+  }
+
+  &__item-pill {
+    padding-right: 6%;
+    flex-basis: 20%;
+    box-sizing: border-box;
+
+    @include media-styles("s") {
+      text-align: center;
+      flex-basis: 40%;
+      padding: 0 4% 40px 4%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @include media-styles("xs") {
+      flex-basis: 100%;
+      padding: 0 20% 30px 20%;
+    }
+  }
+
+  &__item-text {
+    @include media-styles("xs") {
+      font-size: $font-size-h5;
+      line-height: 1.5em;
+    }
+  }
+
+  &__pill {
+    // margin: 40px 60px;
+    margin: 40px 0;
+    width: 100%;
+    max-width: 180px;
+    display: inline-block;
+    color: #FFF;
+    text-align: center;
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    flex-basis: 60%;
+
+    @include media-styles("s") { flex-basis: 100% }
+
+    @include media-styles("xs") {
+      font-size: $font-size-h5;
+      line-height: 1.5em;
+    }
+
+    & > p::before {
+      content: "";
+      display: inline-block;
+      width: 1em;
+    }
+  }
+}

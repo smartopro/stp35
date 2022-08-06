@@ -1,0 +1,29 @@
+{
+  "name": "stp35",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "scripts": {
+    "server:install": "yarn --cwd ./server install",
+    "server:watch": "nodemon --watch \"server/**\" --ext \"ts,json\" --exec \"ts-node server/app.ts\"",
+    "server:prod": "cross-env NODE_ENV=production ts-node server/app.ts",
+    "client:install": "yarn --cwd ./client install",
+    "client:watch": "yarn --cwd ./client run watch",
+    "client:prod": "yarn --cwd ./client run production",
+    "dev": "cross-env NODE_ENV=development concurrently \"yarn run server:watch\" \"npm run client:watch\"",
+    "prod": "yarn run unzip && yarn && yarn run server:install && yarn run client:install && yarn run client:prod && pm2 start ecosystem.config.js --env production",
+    "zip": "zip -er config.zip config/* client/config/.env* client/config/* server/config/* -x '*.DS_Store'",
+    "unzip": "unzip config.zip"
+  },
+  "author": "Ilya Chernetsky <info@smarto.pro>",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "ts-node": "^10.1.0"
+  }
+}

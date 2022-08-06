@@ -1,0 +1,172 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+.root {
+  background-color: $color-accent-2;
+  height: 100vh;
+  padding-top: var(--menu-height);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include media-styles("s") {
+    height: auto;
+    padding-top: calc(var(--menu-height) + 50px);
+    padding-bottom: 50px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.cloud {
+  position: relative;
+
+  &__svg {
+    width: 700px;
+    display: block;
+    margin: 0 auto;
+
+    @include media-styles("xl") { width: 500px }
+    @include media-styles("l") { width: 450px }
+    @include media-styles("m") { width: 350px }
+    @include media-styles("m") { width: 290px }
+  }
+
+  &__text {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: $font-family-oswald;
+    font-weight: $font-weight-light;
+    font-size: $font-size-h3;
+    line-height: 1.5em;
+    letter-spacing: 0.05em;
+    color: $color-text;
+
+    @include media-styles("xl") { width: 85% }
+
+    @include media-styles("l") {
+      width: 80%;
+      font-size: $font-size-h4;
+    }
+
+    @include media-styles("m") { font-size: $font-size-h5 }
+
+    @include media-styles("xs") {
+      top: 45%;
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include media-styles("xs") {
+    top: -5%;
+  }
+
+  &__svg {
+    max-width: 100px;
+    height: 50px;
+
+    @include media-styles("m") { height: 40px }
+  }
+
+  &__title {
+    font-family: $font-family-oswald;
+    color: $color-footer;
+  }
+}
+
+.number {
+  font-family: $font-family-opensans;
+  font-weight: $font-weight-extra-bold;
+  font-size: 192px;
+  text-transform: uppercase;
+  color: #FFF;
+  text-align: center;
+  margin-top: -65px;
+
+  @include media-styles("xl") { font-size: 180px }
+  @include media-styles("m") { font-size: 110px }
+  @include media-styles("m") { margin-top: -55px }
+  @include media-styles("s") { margin-top: -45px }
+}
+
+.text {
+  margin: 30px 0 50px 0;
+
+  @include media-styles("l") { margin: 0 0 30px 0 }
+
+  &__line {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 25%;
+    font-family: $font-family-oswald;
+    font-weight: $font-weight-light;
+    font-size: $font-size-h3;
+    line-height: 1.5em;
+    letter-spacing: 0.05em;
+    color: $color-footer;
+
+    @include media-styles("xl") { font-size: 1.15 * $font-size-h5 }
+    @include media-styles("m") {
+      font-size: $font-size-h5;
+      padding-left: 20%;
+    }
+    @include media-styles("s") { padding-left: 10% }
+  }
+
+  &__link {
+    text-decoration: underline;
+    color: $color-accent;
+
+    &:hover { color: lighten($color-accent, 10%) }
+  }
+}
+
+.arrow {
+  position: relative;
+  display: block;
+  align-self: center;
+
+  &:hover &__svg { filter: none }
+
+  &__svg {
+    pointer-events: none;
+    width: 380px;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(3px 3px 2px #C4C4C4);
+
+    @include media-styles("m") { width: 290px }
+  }
+
+  &__text {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: $font-family-opensans;
+    font-weight: $font-weight-bold;
+    font-size: 1.15 * $font-size-h4;
+    line-height: 1.5em;
+    color: $color-accent;
+
+    @include media-styles("xl") { font-size: 1.15 * $font-size-h5 }
+  }
+}

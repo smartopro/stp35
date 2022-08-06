@@ -1,0 +1,105 @@
+@import "style/mixins.scss";
+@import "style/variables.scss";
+
+.root {
+  --border-radius: 35px;
+
+  width: 100%;
+  background-color: #FFF;
+  font-size: 24px;
+  font-family: $font-family-oswald;
+  font-weight: $font-weight-light;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #FFF;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+  @include media-styles("xs") { font-size: $font-size-h5 }
+
+  &_not-found {
+    color: $color-accent;
+    font-weight: $font-weight-bold;
+    margin: 3em 0;
+  }
+}
+
+.title {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  display: table-row;
+}
+
+.header {
+  display: table-row;
+}
+
+.row {
+  display: table-row;
+
+  &:first-child > .cell {
+    border-top-width: 0;
+  }
+}
+
+.cell {
+  padding: 20px;
+  border: 1px solid #FFF;
+  background-color: $color-accent-2;
+
+  @include media-styles("xs") {
+    font-size: $font-size-h6;
+    padding: 10px;
+  }
+
+  &_title {
+    font-weight: $font-weight-light;
+    font-size: 1.15em;
+    background-color: #FFF;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-bottom: 1px solid $color-accent-2;
+
+    @include media-styles("xs") { font-size: $font-size-h5 }
+  }
+
+  &_header {
+    font-weight: $font-weight-light;
+    font-size: 1.15em;
+    border: 1px solid $color-accent-2;
+    border-bottom-width: 0;
+    background-color: #FFF;
+
+    @include media-styles("xs") { font-size: $font-size-h5 }
+  }
+
+  &_section-header {
+    font-size: 1.15em;
+    text-align: center;
+    background-color: transparentize($color-accent-2, 0.3);
+
+    @include media-styles("xs") { font-size: $font-size-h5 }
+  }
+}
+
+.cell, .cell_header {
+  &:first-child {
+    border-left-width: 0;
+    width: 40%;
+  }
+
+  &:last-child {
+    border-right-width: 0;
+  }
+
+  &:not(:first-child) {
+    width: 30%;
+  }
+
+  @include media-styles("s") {
+    &:first-child { width: 50% }
+
+    &:not(:first-child) { width: 25% }
+  }
+}
+
+mark {
+  background-color: $color-text-selection;
+}

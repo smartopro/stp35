@@ -1,0 +1,28 @@
+@import "style/variables.scss";
+
+.swiper {
+  --swiper-pagination-bullet-width: 75px;
+  --swiper-pagination-bullet-height: 3px;
+  --swiper-theme-color: #FF542F;
+  --swiper-pagination-bullet-horizontal-gap: 4px;
+  --swiper-pagination-bullet-inactive-color: #000;
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+
+  @include media-styles("xs") {
+    --swiper-pagination-bullet-width: 10px;
+    --swiper-pagination-bullet-height: 10px;
+    overflow: visible;
+
+    .swiper-pagination-bullet { border-radius: 50% }
+  }
+}
+
+.swiper-pagination { bottom: 0 !important; }
+
+.swiper-pagination-bullet { border-radius: 0 }
+
+.swiper-button-disabled, .swiper-button-disabled:active, .swiper-button-disabled:hover {
+  background-color: $color-text-unactive;
+  filter: none;
+  box-shadow: none;
+}

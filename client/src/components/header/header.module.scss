@@ -1,0 +1,222 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+$animation-time: 0.2s;
+$animation-fn: linear;
+
+.header {
+  position: fixed;
+  top: 0;
+  height: var(--menu-height);
+  padding: 10px var(--page-padding);
+  box-sizing: border-box;
+  width: 100vw;
+  background-color: rgba(243, 243, 243, 0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__svg {
+    max-width: var(--logo-width);
+  }
+
+  &__title {
+    font-family: $font-family-oswald;
+    font-weight: $font-weight-light;
+    color: #5E6472;
+    letter-spacing: 0.17em;
+    text-transform: capitalize;
+    font-size: 21px;
+
+    @include media-styles("xl") { font-size: 19px }
+    @include media-styles("l") { font-size: 14px }
+  }
+}
+
+.menu__wrapper {
+  flex-grow: 7;
+
+  @include media-styles("s") {
+    order: 1;
+    position: relative;
+    flex-grow: 0;
+  }
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+
+  @include media-styles("s") {
+    position: absolute;
+    right: calc(0.275 * var(--menu-height));
+    flex-direction: column;
+    background-color: #FFF;
+    border-radius: 20px;
+    box-shadow: 4px 4px 30px rgba(94, 100, 114, 0.25);
+    padding: 50px;
+    transition:
+            top $animation-time $animation-fn,
+            transform $animation-time $animation-fn;
+    top: calc(-0.5 * var(--menu-height));
+    transform: translateY(-100%);
+
+    &_open {
+      top: 50%;
+      transform: none;
+    }
+  }
+
+  &__item {
+    list-style-type: none;
+    margin: 0 90px 0 0;
+
+    @include media-styles("xl") { margin-right: 65px }
+    @include media-styles("l") { margin-right: 40px }
+    @include media-styles("m") { margin-right: 25px }
+    @include media-styles("s") { margin: 0 0 15px 0 }
+
+    &:last-child { margin: 0 }
+  }
+
+  &__link {
+    color: $color-text;
+    font-size: 28px;
+    font-weight: $font-weight-regular;
+    position: relative;
+    transition: color $animation-time $animation-fn;
+    padding-bottom: 0.3em;
+
+    @include media-styles("xl") { font-size: 24px }
+    @include media-styles("m")  { font-size: 19px }
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      left: 50%;
+      right: 50%;
+      background-color: $color-accent;
+      bottom: 0;
+      transition-property: right, left;
+      transition-duration: $animation-time;
+      transition-timing-function: $animation-fn;
+    }
+
+    &:hover::after {
+      left: 5%;
+      right: 5%;
+    }
+
+    &_active { color: $color-accent !important }
+
+    @include media-styles("s") {
+      &::after { content: none }
+    }
+  }
+}
+
+.hamburger {
+  position: relative;
+  display: none;
+  width: calc(0.55 * var(--menu-height));
+  height: calc(0.38 * var(--menu-height));
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+          background-color $animation-time $animation-fn,
+          border-radius $animation-time $animation-fn,
+          border-color $animation-time $animation-fn;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+
+  &__dash {
+    width: 100%;
+    height: 5px;
+    background-color: $color-footer;
+    border-radius: 5px;
+    transition:
+            transform $animation-time $animation-fn,
+            width $animation-time $animation-fn;
+  }
+
+  &_open {
+    border-color: $color-footer;
+    border-radius: 30px;
+    background-color: #FFF;
+
+    .hamburger__dash {
+      &_top { transform: scale(0.65) translateY(17px) rotate(45deg) }
+      &_middle { transform: scale(0) }
+      &_bottom { transform: scale(0.65) translateY(-17px) rotate(-45deg) }
+    }
+  }
+
+  @include media-styles("s") { display: flex }
+}
+
+.info {
+  flex-grow: 1;
+  font-size: 24px;
+
+  @include media-styles("l") { font-size: 18px }
+  @include media-styles("s") { flex-grow: initial }
+  @include media-styles("xs") { display: none }
+
+  &__time { font-weight: $font-weight-light }
+  &__email { font-weight: $font-weight-light }
+}
+
+.phone {
+  font-family: $font-family-oswald;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include media-styles("xs") {
+    flex-grow: 1;
+    align-items: flex-end;
+    margin-right: 20px;
+  }
+
+  &__link {
+    font-size: 40px;
+    color: $color-accent;
+    font-weight: $font-weight-bold;
+    display: flex;
+    align-items: center;
+
+    @include media-styles("xl") { font-size: 32px }
+    @include media-styles("s") { font-size: 28px }
+  }
+
+  &__number {
+    @include media-styles("xs") { display: none }
+  }
+
+  &__svg {
+    margin-right: 10px;
+    pointer-events: none;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.05em;
+    align-self: end;
+
+    @include media-styles("xl") { font-size: 14px }
+    @include media-styles("l") { font-size: 12px }
+    @include media-styles("xs") { display: none }
+  }
+}

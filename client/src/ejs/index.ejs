@@ -1,0 +1,222 @@
+<%  htmlWebpackPlugin.options.lang = htmlWebpackPlugin.options.lang || "ru"
+    htmlWebpackPlugin.options.meta = htmlWebpackPlugin.options.meta || []
+    htmlWebpackPlugin.options.links = htmlWebpackPlugin.options.links || []
+    htmlWebpackPlugin.options.scripts = htmlWebpackPlugin.options.scripts || [] %>
+<!doctype html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+<!--!
+    Website is created in web-studio Smarto: https://smarto.pro
+    Copyright (C) <%= new Date().getFullYear() %> Smarto
+-->
+<head>
+    <% for (let item of htmlWebpackPlugin.tags.headTags) {
+        if (
+            [
+                "apple-touch-icon",
+                "apple-touch-startup-image",
+                "icon",
+                "manifest",
+                "shortcut icon",
+                "yandex-tableau-widget",
+                "apple-mobile-web-app-capable",
+                "apple-mobile-web-app-status-bar-style",
+                "apple-mobile-web-app-title",
+                "application-name",
+                "mobile-web-app-capable",
+                "msapplication-TileColor",
+                "msapplication-TileImage",
+                "msapplication-config",
+                "theme-color"
+            ].includes(item.attributes.rel)
+        ) { %>
+            <%= item %>
+        <% }
+    } %>
+
+    <!-- <base> -->
+    <% if (htmlWebpackPlugin.options.baseHref) { %>
+        <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
+    <% } %>
+
+    <!-- [meta] -->
+    <% if (Array.isArray(htmlWebpackPlugin.options.meta)) {
+        for (item of htmlWebpackPlugin.options.meta) { %>
+            <meta<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %>>
+        <% } %>
+    <% } %>
+
+    <!-- title -->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- favicon -->
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+        <link href="<%= htmlWebpackPlugin.files.favicon %>" rel="shortcut icon" />
+    <% } %>
+
+    <!-- mobile -->
+    <% if (htmlWebpackPlugin.options.mobile) { %>
+        <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <% } %>
+
+    <!-- [links] -->
+    <% for (let item of htmlWebpackPlugin.options.links) {
+        if (typeof item === 'string' || item instanceof String) { item = { href: item, rel: 'stylesheet' } } %>
+        <link<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %> />
+    <% } %>
+
+    <!-- Webpack CSS -->
+    <% for (let key in htmlWebpackPlugin.files.css) {
+        if (htmlWebpackPlugin.files.cssIntegrity) { %>
+            <link
+                href="<%= htmlWebpackPlugin.files.css[key] %>"
+                rel="stylesheet"
+                integrity="<%= htmlWebpackPlugin.files.cssIntegrity[key] %>"
+                crossorigin="<%= webpackConfig.output.crossOriginLoading %>" />
+        <% } else { %>
+           <link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet" />
+        <% } %>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.headHtmlSnippet) { %>
+        <%= htmlWebpackPlugin.options.headHtmlSnippet %>
+    <% } %>
+
+    <style>
+        body { margin: 0 }
+
+        .dot-loader {
+            align-items: center;
+            background: #AAD7F0;
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+        }
+
+        .dot-loader__filter {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .dot-loader__dots {
+            filter: url(#gooeyness);
+            padding: 30px;
+        }
+
+        .dot-loader__dot {
+            background: white;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 20px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .dot-loader__dot:first-child { animation: dot-loader__FirstDot 3s infinite }
+        .dot-loader__dot:nth-child(2) { animation: dot-loader__SecondDot 3s infinite }
+        .dot-loader__dot:nth-child(3) { animation: dot-loader__ThirdDot 3s infinite }
+        .dot-loader__dot:nth-child(4) { animation: dot-loader__FourthDot 3s infinite }
+        .dot-loader__dot:nth-child(5) { animation: dot-loader__FifthDot 3s infinite }
+
+        @keyframes dot-loader__FirstDot {
+            0%   { transform: scale(1) translateX(0) }
+            25%  { transform: scale(2.5) translateX(0) }
+            50%  { transform: scale(1) translateX(0) }
+            83%  { transform: scale(1) translateX(240px) }
+            100% { transform: scale(1) translateX(0) }
+        }
+
+        @keyframes dot-loader__SecondDot {
+            0%   { transform: translateX(0px) }
+            27%  { transform: translateX(-40px) }
+            50%  { transform: translateX(0px) }
+            81%  { transform: translateX(180px) }
+            100% { transform: translateX(0) }
+        }
+
+        @keyframes dot-loader__ThirdDot {
+            0%   { transform: translateX(0px) }
+            29%  { transform: translateX(-100px) }
+            50%  { transform: translateX(0px) }
+            79%  { transform: translateX(120px) }
+            100% { transform: translateX(0) }
+        }
+
+        @keyframes dot-loader__FourthDot {
+            0%   { transform: translateX(0px) }
+            31%  { transform: translateX(-160px) }
+            50%  { transform: translateX(0px) }
+            77%  { transform: translateX(60px) }
+            100% { transform: translateX(0) }
+        }
+
+        @keyframes dot-loader__FifthDot {
+            0%   { transform: scale(1) translateX(0) }
+            33%  { transform: scale(1) translateX(-220px) }
+            50%  { transform: scale(1) translateX(0) }
+            75%  { transform: scale(2.5) translateX(0) }
+            100% { transform: scale(1) translateX(0) }
+        }
+    </style>
+</head>
+<body>
+    <% if (htmlWebpackPlugin.options.bodyHtmlSnippet) { %>
+        <%= htmlWebpackPlugin.options.bodyHtmlSnippet %>
+    <% } %>
+
+    <!-- root -->
+    <div id="root">
+        <div class="dot-loader">
+            <svg class="dot-loader__filter">
+                <defs>
+                    <filter id="gooeyness">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="gooeyness" />
+                        <feComposite in="SourceGraphic" in2="gooeyness" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="dot-loader__dots">
+                <div class="dot-loader__dot"></div>
+                <div class="dot-loader__dot"></div>
+                <div class="dot-loader__dot"></div>
+                <div class="dot-loader__dot"></div>
+                <div class="dot-loader__dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- [JS] -->
+    <% for (let item of htmlWebpackPlugin.options.scripts) {
+        if (typeof item === 'string' || item instanceof String) { item = { src: item, type: 'text/javascript' } } %>
+        <script<% for (let key in item) { %> <%= key %>="<%= item[key] %>"<% } %>></script>
+    <% } %>
+
+    <!-- Webpack -->
+    <% for (let js in htmlWebpackPlugin.files.js) { %>
+        <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.yandexMetrika && (htmlWebpackPlugin.options.mode === "production")) { %>
+        <!-- Yandex.Metrika counter -->
+        <%= htmlWebpackPlugin.options.yandexMetrika %>
+        <!-- /Yandex.Metrika counter -->
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.googleAnalytics && (htmlWebpackPlugin.options.mode === "production")) { %>
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+            window.GoogleAnalyticsObject='ga';window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            <% if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+                ga('create','<%= htmlWebpackPlugin.options.googleAnalytics.trackingId %>','auto');
+            <% } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); } %>
+            <% if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+                ga('send','pageview')
+            <% } %>
+        </script>
+        <script async defer src="https://www.google-analytics.com/analytics.js" type="text/javascript"></script>
+        <!-- /Google Analytics -->
+    <% } %>
+</body>
+</html>

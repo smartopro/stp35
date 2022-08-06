@@ -1,0 +1,38 @@
+$text-color: #FFF;
+$text-color-hover: #FFF;
+
+.branding {
+  text-align: center;
+
+  &__made-in {
+    font-family: "Magistral", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: $text-color;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+}
+
+.smarto {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAXCAYAAADKmiUPAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgBVYvBDQAhCATXvQdKm9eUtQpGwcSHn02GGfD9q1MdhWIAm2OxJsaAMmJqioOPLWwjcWZnt1N/8Fi16GTmW9w2oU8cfndSj+gAAAAASUVORK5CYII=) repeat-x 0 100%;
+  background-size: 100% 0;
+  transition: background-size .23s ease-out, color .23s ease-out, background-image .1s linear .13s;
+  padding: 0.35em;
+  line-height: 0.55em;
+  display: inline-block;
+
+  &:hover {
+    background-size: 100% 100%;
+
+    .smarto__svg { fill: $text-color-hover }
+  }
+}
+
+.smarto__svg {
+  height: 0.8em;
+  fill: $text-color;
+  transition: fill .23s ease-out;
+  stroke: #FFF;
+  stroke-width: 12px;
+  overflow: visible;
+}

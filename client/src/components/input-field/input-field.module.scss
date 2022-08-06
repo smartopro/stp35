@@ -1,0 +1,19 @@
+@import "style/variables.scss";
+@import "style/mixins.scss";
+
+.input-field {
+  border-radius: 8px;
+  border: 1px solid #E8E8E8;
+  font-weight: $font-weight-regular;
+  padding: 20px 30px;
+  outline: none;
+  line-height: 1em;
+  letter-spacing: 0.05em;
+  text-align: left;
+  margin-bottom: 1em;
+
+  &::placeholder {
+    color: $color-text-unactive;
+    text-align: left;
+  }
+}

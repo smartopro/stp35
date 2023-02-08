@@ -38,7 +38,7 @@ const Footer: React.FC = () => (
             <div styleName="footer__info">
                 <ul>
                     <li><div>{data.contact.workingTime}</div></li>
-                    <li><a href={`tel:{data.contact.phone}`}>{data.contact.phone}</a></li>
+                    <li><a href={`tel:${data.contact.phone}`}>{data.contact.phone}</a></li>
                     <li><a href={`mailto:${data.contact.email}`}>{data.contact.email}</a></li>
                     <li><div dangerouslySetInnerHTML={{ __html: data.contact.address }} /></li>
                 </ul>

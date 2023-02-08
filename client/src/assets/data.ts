@@ -49,8 +49,8 @@ const data: IData = {
 	],
 	contact: {
 		email: "info@stp35.ru",
-		phone: "+7 (951) 748-14-09",
-		phoneDisp: "8 (800) 510-51-00",
+		phone: "+7 (951) 748-14-10",
+		phoneDisp: "8 (800) 510-51-01",
 		workingTime: "8:00 - 17:00",
 		address: "160029, г.&nbsp;Вологда, ул.&nbsp;Машиностроительная, д.&nbsp;19, офис&nbsp;123",
 		name: "Сантехпром",

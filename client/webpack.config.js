@@ -273,7 +273,8 @@ export default (env = {}) => {
         output: {
             filename: "js/[name].[fullhash:8].js",
             path: path.resolve(__dirname, `dist/${isProd ? "release" : "debug"}`),
-			chunkFilename: "js/[id].[fullhash:8].js"
+			chunkFilename: "js/[id].[fullhash:8].js",
+			hashFunction: "xxhash64",
         },
 		target: isProd ? "browserslist" : "web", // disable browserslist for development
 		devtool: isProd ? undefined : "source-map",
